@@ -5,18 +5,20 @@ require "omniauth-oauth2"
 module OmniAuth
   module Strategies
     class Ub < OmniAuth::Strategies::OAuth2
+      REGEXP_SANITIZER = /[<>?%&^*#@()\[\]=+:;"{}\\|]/
+
       option :name, "ub"
       option :token_options, %w(client_id client_secret)
 
       uid do
-        token_info["uid"]
+        raw_info.dig("employeenumber", 0)
       end
 
       info do
         {
-          name: token_info["cn"],
-          nickname: token_info["dni"],
-          email: token_info["mail"]
+          name: raw_info.dig("cn", 0).gsub(REGEXP_SANITIZER, ""),
+          nickname: Decidim::UserBaseEntity.nicknamize(raw_info.dig("uidnet", 0)),
+          email: raw_info.dig("mail", 0)
         }
       end
 
@@ -24,8 +26,8 @@ module OmniAuth
         full_host + callback_path
       end
 
-      def token_info
-        @token_info ||= begin
+      def raw_info
+        @raw_info ||= begin
           connection = Faraday.new(url: options.client_options[:site], ssl: { verify: true }) do |conn|
             conn.headers["Authorization"] = "#{access_token.response.parsed.token_type} #{access_token.token}"
           end
