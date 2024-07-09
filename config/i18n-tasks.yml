@@ -1,4 +1,7 @@
 ---
 
 base_locale: en
-locales: [en]
+locales:
+  - ca
+  - en
+  - es

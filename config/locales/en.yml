@@ -1,2 +1,31 @@
 ---
 en:
+  decidim:
+    authorization_handlers:
+      ub_ant:
+        explanation: Get verified as an old student
+        name: Old student (ANT)
+      ub_est:
+        explanation: Get verified as a student
+        name: Student (EST)
+      ub_pas:
+        explanation: Get verified as an administrative/services personal
+        name: Administrative/services personal (PTGAS)
+      ub_pdi:
+        explanation: Get verified as a teacher
+        name: Teacher (PDI)
+      ub_pex:
+        explanation: Get verified as an external personal
+        name: External personal (PEX)
+    ub:
+      errors:
+        missing_role: You don't have this role
+    verifications:
+      authorizations:
+        first_login:
+          actions:
+            ub_ant: Verify you are an old student (ANT)
+            ub_est: Verify you are a student (EST)
+            ub_pas: Verify you are an administrative/services personal (PTGAS)
+            ub_pdi: Verify you are a teacher (PDI)
+            ub_pex: Verify you are an external personal (PEX)

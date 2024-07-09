@@ -1,0 +1,31 @@
+---
+es:
+  decidim:
+    authorization_handlers:
+      ub_ant:
+        explanation: Verifícate como antiguo estudiante
+        name: Antiguo estudiante (ANT)
+      ub_est:
+        explanation: Verifícate como estudiante
+        name: Estudiante (EST)
+      ub_pas:
+        explanation: Verifícate como personal administrativo/servicios
+        name: Personal administrativo/servicios (PTGAS)
+      ub_pdi:
+        explanation: Verifícate como profesor
+        name: Profesor (PDI)
+      ub_pex:
+        explanation: Verifícate como personal externo
+        name: Personal externo (PEX)
+    ub:
+      errors:
+        missing_role: No tienes este rol
+    verifications:
+      authorizations:
+        first_login:
+          actions:
+            ub_ant: Verifícate como antiguo estudiante (ANT)
+            ub_est: Verifícate como estudiante (EST)
+            ub_pas: Verifícate como personal administrativo/servicios (PTGAS)
+            ub_pdi: Verifícate como profesor (PDI)
+            ub_pex: Verifícate como personal externo (PEX)

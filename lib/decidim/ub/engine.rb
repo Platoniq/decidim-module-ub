@@ -9,7 +9,8 @@ module Decidim
       isolate_namespace Decidim::Ub
 
       config.to_prepare do
-        Decidim::OmniauthHelper.include(Decidim::OmniauthHelperOverride)
+        Decidim::OmniauthHelper.include(Decidim::Ub::OmniauthHelperOverride)
+        Decidim::User.include(Decidim::Ub::UserOverride)
       end
 
       initializer "decidim_ub.omniauth" do
@@ -32,6 +33,24 @@ module Decidim
 
       initializer "decidim_ub.webpacker.assets_path" do
         Decidim.register_assets_path File.expand_path("app/packs", root)
+      end
+
+      initializer "decidim_ub.authorizations" do
+        Decidim::Ub.authorizations.each do |name|
+          Decidim::Verifications.register_workflow(name.to_sym) do |workflow|
+            workflow.form = "Decidim::Ub::Verifications::#{name.camelize}"
+          end
+        end
+      end
+
+      initializer "decidim_ub.user_sync" do
+        ActiveSupport::Notifications.subscribe "decidim.user.omniauth_registration" do |_name, data|
+          Decidim::Ub::OmniauthUserSyncJob.perform_later(data) if data[:provider] == Decidim::Ub::OMNIAUTH_PROVIDER_NAME
+        end
+
+        ActiveSupport::Notifications.subscribe "decidim.ub.user.updated" do |_name, data|
+          Decidim::Ub::AutoVerificationJob.perform_later(data)
+        end
       end
     end
   end

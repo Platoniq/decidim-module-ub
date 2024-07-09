@@ -9,8 +9,12 @@ checksums = [
   {
     package: "decidim-core",
     files: {
+      # Do not show first_login page if the user has registered with the UB OAuth method
+      "/app/controllers/concerns/decidim/devise_authentication_methods.rb" => "9d4bd40211243cca819e83bb2344972c",
       # Show "Universitat de Barcelona" in the OAuth button
-      "/app/helpers/decidim/omniauth_helper.rb" => "5c310ce2f67a173e802c8cb5c0918f31"
+      "/app/helpers/decidim/omniauth_helper.rb" => "5c310ce2f67a173e802c8cb5c0918f31",
+      # Add methods to work with UB identities
+      "/app/models/decidim/user.rb" => "81da9f2f82f6336a92b948d827bd0fb3"
     }
   }
 ]

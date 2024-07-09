@@ -7,6 +7,13 @@ module Decidim
     include ActiveSupport::Configurable
 
     OMNIAUTH_PROVIDER_NAME = "ub"
+    ROLES = %w(EST PAS PDI PEX ANT).freeze
+
+    class << self
+      def roles_to_auth_name(roles)
+        roles.map { |role| "ub_#{role.downcase}" }
+      end
+    end
 
     config_accessor :omniauth do
       {
@@ -18,6 +25,10 @@ module Decidim
         authorize_url: ENV["UB_AUTHORIZE_URL"].presence,
         token_url: ENV["UB_TOKEN_URL"].presence
       }
+    end
+
+    config_accessor :authorizations do
+      roles_to_auth_name(ROLES).freeze
     end
 
     class Error < StandardError; end
