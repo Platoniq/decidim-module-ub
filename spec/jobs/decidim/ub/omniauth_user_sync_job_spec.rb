@@ -50,9 +50,7 @@ module Decidim
 
           context "when the sync fails" do
             before do
-              # rubocop: disable RSpec/AnyInstance
               allow_any_instance_of(Decidim::Ub::SyncUser).to receive(:update_user!).and_raise
-              # rubocop: enable RSpec/AnyInstance
             end
 
             it "writes an error log" do

@@ -7,6 +7,7 @@ SimpleCov.start do
 
   add_filter "lib/generators"
   add_filter "lib/decidim/ub/version.rb"
+  add_filter "lib/omniauth/strategies/ub.rb"
   add_filter "/spec"
 end
 

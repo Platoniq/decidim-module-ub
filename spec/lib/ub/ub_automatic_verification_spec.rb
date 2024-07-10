@@ -2,7 +2,6 @@
 
 require "spec_helper"
 
-# rubocop:disable RSpec/DescribeClass
 describe "Automatic verification after oauth sign up" do
   let!(:user) { create(:user) }
 
@@ -36,5 +35,3 @@ describe "Automatic verification after oauth sign up" do
     end
   end
 end
-
-# rubocop:enable RSpec/DescribeClass

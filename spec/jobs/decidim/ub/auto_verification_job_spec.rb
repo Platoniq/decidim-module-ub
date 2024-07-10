@@ -55,9 +55,7 @@ module Decidim
 
             context "when the authorization cannot be removed" do
               before do
-                # rubocop: disable RSpec/AnyInstance
                 allow_any_instance_of(Decidim::Verifications::DestroyUserAuthorization).to receive(:authorization).and_return(nil)
-                # rubocop: enable RSpec/AnyInstance
               end
 
               it "writes an error log" do
@@ -69,9 +67,7 @@ module Decidim
 
             context "when the authorization cannot be created" do
               before do
-                # rubocop: disable RSpec/AnyInstance
                 allow_any_instance_of(Decidim::AuthorizationHandler).to receive(:invalid?).and_return(true)
-                # rubocop: enable RSpec/AnyInstance
               end
 
               it "writes an error log" do

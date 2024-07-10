@@ -21,6 +21,12 @@ describe OmniAuth::Strategies::Ub do
   let(:roles) { %w(PAS PDI) }
 
   let(:raw_info) { { employeenumber: [id], cn: [name], mail: [email], uidnet: [nickname], colect2: roles }.stringify_keys }
+  let(:access_token) { OpenStruct.new(token: "secret-token", response: OpenStruct.new(parsed: OpenStruct.new(token_type: "Bearer"))) }
+
+  before do
+    allow_any_instance_of(described_class).to receive(:access_token).and_return(access_token)
+    stub_request(:get, "https://test.example.org/api/adas/oauth2/tokendata").to_return(status: 200, body: raw_info.to_json)
+  end
 
   describe "client options" do
     it "has correct name" do
@@ -49,12 +55,6 @@ describe OmniAuth::Strategies::Ub do
   end
 
   describe "info" do
-    before do
-      # rubocop: disable RSpec/SubjectStub
-      allow(subject).to receive(:raw_info).and_return(raw_info)
-      # rubocop: enable RSpec/SubjectStub
-    end
-
     it "returns the uid" do
       expect(subject.uid).to eq(id)
     end
