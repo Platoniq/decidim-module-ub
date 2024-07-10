@@ -29,3 +29,7 @@ group :development do
   gem "spring-watcher-listen", "~> 2.0"
   gem "web-console", "~> 4.2"
 end
+
+group :test do
+  gem "coveralls_reborn", require: false
+end

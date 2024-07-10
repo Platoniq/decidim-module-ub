@@ -1,6 +1,12 @@
 # frozen_string_literal: true
 
 require "decidim/dev"
+require "simplecov"
+
+if ENV["CI"]
+  require "coveralls"
+  SimpleCov.formatter = Coveralls::SimpleCov::Formatter
+end
 
 ENV["ENGINE_ROOT"] = File.dirname(__dir__)
 

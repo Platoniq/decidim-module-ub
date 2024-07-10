@@ -3,6 +3,8 @@
 SimpleCov.start do
   root ENV.fetch("ENGINE_ROOT", nil)
 
+  track_files "{app,lib}/**/*.rb"
+
   add_filter "lib/generators"
   add_filter "/spec"
 end
