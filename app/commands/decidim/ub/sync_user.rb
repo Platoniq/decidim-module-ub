@@ -31,6 +31,8 @@ module Decidim
       attr_reader :user, :roles
 
       def update_user!
+        return unless user.ub_identity?
+
         user.ub_roles = roles
         user.save!
       end

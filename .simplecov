@@ -6,6 +6,7 @@ SimpleCov.start do
   track_files "{app,lib}/**/*.rb"
 
   add_filter "lib/generators"
+  add_filter "lib/decidim/ub/version.rb"
   add_filter "/spec"
 end
 
