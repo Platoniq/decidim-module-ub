@@ -3,7 +3,7 @@
 [![[CI] Lint](https://github.com/Platoniq/decidim-module-ub/actions/workflows/lint.yml/badge.svg)](https://github.com/Platoniq/decidim-module-ub/actions/workflows/lint.yml)
 [![[CI] Test](https://github.com/Platoniq/decidim-module-ub/actions/workflows/test.yml/badge.svg)](https://github.com/Platoniq/decidim-module-ub/actions/workflows/test.yml)
 [![Maintainability](https://api.codeclimate.com/v1/badges/c975a347c58389448503/maintainability)](https://codeclimate.com/github/Platoniq/decidim-module-ub/maintainability)
-[![Coverage Status](https://coveralls.io/repos/github/Platoniq/decidim-module-ub/badge.svg?branch=HEAD)](https://coveralls.io/github/Platoniq/decidim-module-ub?branch=HEAD)
+[![Coverage Status](https://coveralls.io/repos/github/Platoniq/decidim-module-ub/badge.svg?branch=main)](https://coveralls.io/github/Platoniq/decidim-module-ub?branch=main)
 
 A Decidim module to sync users from Universitat de Barcelona who connect to the platform.
 
