@@ -20,7 +20,7 @@ module Decidim
 
         it "creates authorizations for the roles provided" do
           subject.perform_now(params)
-          expect(Decidim::Authorization.where(user: user).map(&:name)).to match_array(Decidim::Ub.roles_to_auth_name(roles & Decidim::Ub::ROLES))
+          expect(Decidim::Authorization.where(user:).map(&:name)).to match_array(Decidim::Ub.roles_to_auth_name(roles & Decidim::Ub::ROLES))
         end
       end
 

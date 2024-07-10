@@ -33,15 +33,15 @@ describe "OmniAuth button" do
     end
   end
 
-  context "when odoo disabled" do
+  context "when ub disabled" do
     let(:omniauth_settings) do
       {
-        omniauth_settings_odoo_keycloak_enabled: false
+        omniauth_settings_ub_keycloak_enabled: false
       }
     end
 
     it "has no button" do
-      expect(page).not_to have_content "Universitat De Barcelona"
+      expect(page).to have_no_content "Universitat De Barcelona"
     end
   end
 end
