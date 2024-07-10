@@ -20,10 +20,15 @@ describe OmniAuth::Strategies::Ub do
   let(:name) { "John Doe" }
   let(:roles) { %w(PAS PDI) }
 
+  let(:full_host) { "https://test.example.org" }
+  let(:callback_path) { "/auth/ub/callback" }
+
   let(:raw_info) { { employeenumber: [id], cn: [name], mail: [email], uidnet: [nickname], colect2: roles }.stringify_keys }
   let(:access_token) { OpenStruct.new(token: "secret-token", response: OpenStruct.new(parsed: OpenStruct.new(token_type: "Bearer"))) }
 
   before do
+    allow_any_instance_of(described_class).to receive(:full_host).and_return(full_host)
+    allow_any_instance_of(described_class).to receive(:callback_path).and_return(callback_path)
     allow_any_instance_of(described_class).to receive(:access_token).and_return(access_token)
     stub_request(:get, "https://test.example.org/api/adas/oauth2/tokendata").to_return(status: 200, body: raw_info.to_json)
   end
@@ -51,6 +56,12 @@ describe OmniAuth::Strategies::Ub do
 
     it "has correct token_url" do
       expect(subject.options.client_options.token_url).to eq(client_options[:token_url])
+    end
+  end
+
+  describe "callback_url" do
+    it "returns the full callback url" do
+      expect(subject.callback_url).to eq("#{full_host}#{callback_path}")
     end
   end
 
