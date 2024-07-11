@@ -1,5 +1,6 @@
 # Decidim::Ub
 
+[![Gem Version](https://img.shields.io/gem/v/decidim-ub.svg)](https://badge.fury.io/rb/decidim-ub)
 [![[CI] Lint](https://github.com/Platoniq/decidim-module-ub/actions/workflows/lint.yml/badge.svg)](https://github.com/Platoniq/decidim-module-ub/actions/workflows/lint.yml)
 [![[CI] Test](https://github.com/Platoniq/decidim-module-ub/actions/workflows/test.yml/badge.svg)](https://github.com/Platoniq/decidim-module-ub/actions/workflows/test.yml)
 [![Maintainability](https://api.codeclimate.com/v1/badges/c975a347c58389448503/maintainability)](https://codeclimate.com/github/Platoniq/decidim-module-ub/maintainability)
@@ -12,7 +13,7 @@ A Decidim module to sync users from Universitat de Barcelona who connect to the 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem "decidim-ub", git: "https://github.com/Platoniq/decidim-module-ub"
+gem "decidim-ub"
 ```
 
 And then execute:
@@ -35,6 +36,22 @@ You need to configure some environment variables for the OAuth client:
 | UB_AUTHORIZE_URL | The path for the authorization URL        | `/authorize`                |                            |
 | UB_TOKEN_URL     | The path for the token URL                | `/token`                    |                            |
 | UB_ICON          | The path for the icon shown in the button | `media/images/my_icon.svg`  | `media/images/ub_logo.svg` |
+
+If you set the variables you don't see the OAuth button in the organization, you will need to create an initializer to configure this module. Just create a file in `config/initializers/decidim_ub.rb` with the content below:
+
+```ruby
+Decidim::Ub.configure do |config|
+  config.omniauth = {
+    enabled: ENV["UB_CLIENT_ID"].present?,
+    icon_path: ENV.fetch("UB_ICON", "media/images/ub_logo.svg"),
+    client_id: ENV["UB_CLIENT_ID"].presence,
+    client_secret: ENV["UB_CLIENT_SECRET"].presence,
+    site: ENV["UB_SITE"].presence,
+    authorize_url: ENV["UB_AUTHORIZE_URL"].presence,
+    token_url: ENV["UB_TOKEN_URL"].presence
+  }
+end
+```
 
 ## Contributing
 
