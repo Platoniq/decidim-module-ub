@@ -1,0 +1,8 @@
+RSpec/AnyInstance:
+  Exclude:
+    - 'spec/jobs/decidim/ub/auto_verification_job_spec.rb'
+    - 'spec/jobs/decidim/ub/omniauth_user_sync_job_spec.rb'
+    - 'spec/omni_auth/strategies/ub_spec.rb'
+RSpec/DescribeClass:
+  Exclude:
+    - 'spec/lib/ub/ub_automatic_verification_spec.rb'

@@ -1,0 +1,31 @@
+---
+ca:
+  decidim:
+    authorization_handlers:
+      ub_ant:
+        explanation: Verifica't com a antic alumne
+        name: Antic alumne (ANT)
+      ub_est:
+        explanation: Verifica't com a alumne
+        name: Alumne (EST)
+      ub_pas:
+        explanation: Verifica't com a personal administratiu/servicis
+        name: Personal administratiu/servicis (PTGAS)
+      ub_pdi:
+        explanation: Verifica't com a professor
+        name: Professor (PDI)
+      ub_pex:
+        explanation: Verifica't com a personal extern
+        name: Personal extern (PEX)
+    ub:
+      errors:
+        missing_role: No tens aquest rol
+    verifications:
+      authorizations:
+        first_login:
+          actions:
+            ub_ant: Verifica't com a antic almumne (ANT)
+            ub_est: Verifica't com a alumne (EST)
+            ub_pas: Verifica't com a personal administració/serveis (PTGAS)
+            ub_pdi: Verifica't com a professor (PDI)
+            ub_pex: Verifica't com a personal extern (PEX)
