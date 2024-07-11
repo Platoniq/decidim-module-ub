@@ -19,6 +19,8 @@ And then execute:
 
 ```bash
 bundle
+bundle exec rails decidim_ub:install:migrations
+bundle exec rails db:migrate
 ```
 
 ## Configuration
