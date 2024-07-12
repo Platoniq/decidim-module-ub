@@ -24,7 +24,7 @@ describe OmniAuth::Strategies::Ub do
   let(:callback_path) { "/auth/ub/callback" }
 
   let(:raw_info) { { employeenumber: [id], cn: [name], mail: [email], uidnet: [nickname], colect2: roles }.stringify_keys }
-  let(:access_token) { OpenStruct.new(token: "secret-token", response: OpenStruct.new(parsed: OpenStruct.new(token_type: "Bearer"))) }
+  let(:access_token) { OpenStruct.new(token: "secret-token", options: { header_format: "Bearer %s" }) }
 
   before do
     allow_any_instance_of(described_class).to receive(:full_host).and_return(full_host)
