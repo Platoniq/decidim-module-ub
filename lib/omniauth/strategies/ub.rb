@@ -30,7 +30,7 @@ module OmniAuth
       def raw_info
         @raw_info ||= begin
           connection = Faraday.new(url: options.client_options[:site], ssl: { verify: true }) do |conn|
-            conn.headers["Authorization"] = "#{access_token.response.parsed.token_type} #{access_token.token}"
+            conn.headers["Authorization"] = access_token.options[:header_format].gsub("%s", access_token.token)
           end
           response = connection.get("/api/adas/oauth2/tokendata")
           raise Error, "Unable to fetch the user information" unless response.success?
