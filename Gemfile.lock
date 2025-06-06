@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    decidim-ub (0.1.1)
+    decidim-ub (0.2.0)
       decidim-core (>= 0.29.0, < 0.30)
 
 GEM
