@@ -4,7 +4,7 @@ source "https://rubygems.org"
 
 ruby RUBY_VERSION
 
-DECIDIM_VERSION = "~> 0.28.0"
+DECIDIM_VERSION = "~> 0.29.0"
 
 gem "decidim", DECIDIM_VERSION
 gem "decidim-ub", path: "."
@@ -25,8 +25,6 @@ group :development do
   gem "letter_opener_web", "~> 2.0"
   gem "listen", "~> 3.1"
   gem "rack-mini-profiler", require: false
-  gem "spring", "~> 2.0"
-  gem "spring-watcher-listen", "~> 2.0"
   gem "web-console", "~> 4.2"
 end
 
