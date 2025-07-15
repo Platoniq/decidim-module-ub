@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require "omniauth-oauth2"
 
 module OmniAuth
@@ -33,6 +34,7 @@ module OmniAuth
           end
           response = connection.get("/api/adas/oauth2/tokendata")
           raise Error, "Unable to fetch the user information" unless response.success?
+
           JSON.parse(response.body).to_h
         end
       end
@@ -41,8 +43,8 @@ module OmniAuth
 
       def current_organization
         @current_organization ||= request.env["decidim.current_organization"] ||
-                                 Decidim::Organization.find_by(host: request.host) ||
-                                 Decidim::Organization.first
+                                  Decidim::Organization.find_by(host: request.host) ||
+                                  Decidim::Organization.first
       end
     end
   end
