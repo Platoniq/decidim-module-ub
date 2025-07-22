@@ -2,7 +2,7 @@
 
 module Decidim
   module DeviseAuthenticationMethods
-    def first_login_and_not_authorized?(user)
+    def pending_onboarding_action?(user)
       return false if user.ub_identity?
 
       super
