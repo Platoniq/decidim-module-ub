@@ -17,7 +17,7 @@ module OmniAuth
       info do
         {
           name: raw_info.dig("cn", 0).gsub(REGEXP_SANITIZER, ""),
-          nickname: Decidim::UserBaseEntity.nicknamize(raw_info.dig("uidnet", 0)),
+          nickname: Decidim::UserBaseEntity.nicknamize(raw_info.dig("uidnet", 0), current_organization.id),
           email: raw_info.dig("mail", 0),
           roles: raw_info["colect2"] || []
         }
