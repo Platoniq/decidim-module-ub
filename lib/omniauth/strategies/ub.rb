@@ -17,7 +17,7 @@ module OmniAuth
       info do
         {
           name: raw_info.dig("cn", 0).gsub(REGEXP_SANITIZER, ""),
-          nickname: Decidim::UserBaseEntity.nicknamize(raw_info.dig("uidnet", 0)),
+          nickname: Decidim::UserBaseEntity.nicknamize(raw_info.dig("uidnet", 0), current_organization.id),
           email: raw_info.dig("mail", 0),
           roles: raw_info["colect2"] || []
         }
@@ -37,6 +37,14 @@ module OmniAuth
 
           JSON.parse(response.body).to_h
         end
+      end
+
+      private
+
+      def current_organization
+        @current_organization ||= request.env["decidim.current_organization"] ||
+                                  Decidim::Organization.find_by(host: request.host) ||
+                                  Decidim::Organization.first
       end
     end
   end

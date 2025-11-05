@@ -9,6 +9,8 @@ describe OmniAuth::Strategies::Ub do
     end
   end
 
+  let(:organization) { create(:organization) }
+
   let(:client_id) { "test-client-id" }
   let(:client_secret) { "test-client-secret" }
   let(:client_options) { { site: "https://test.example.org", authorize_url: "/authorize", token_url: "/token" } }
@@ -30,6 +32,7 @@ describe OmniAuth::Strategies::Ub do
     allow_any_instance_of(described_class).to receive(:full_host).and_return(full_host)
     allow_any_instance_of(described_class).to receive(:callback_path).and_return(callback_path)
     allow_any_instance_of(described_class).to receive(:access_token).and_return(access_token)
+    allow_any_instance_of(described_class).to receive(:current_organization).and_return(organization)
     stub_request(:get, "https://test.example.org/api/adas/oauth2/tokendata").to_return(status: 200, body: raw_info.to_json)
   end
 

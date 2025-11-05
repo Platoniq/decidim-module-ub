@@ -14,7 +14,7 @@ checksums = [
       # Show "Universitat de Barcelona" in the OAuth button
       "/app/helpers/decidim/omniauth_helper.rb" => "5c310ce2f67a173e802c8cb5c0918f31",
       # Add methods to work with UB identities
-      "/app/models/decidim/user.rb" => "8a37ecf5391586f73aea3dc39ba67fe1"
+      "/app/models/decidim/user.rb" => "15925bc5ad7efb7508c48f4e10fced48"
     }
   }
 ]
