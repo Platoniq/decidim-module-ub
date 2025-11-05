@@ -38,6 +38,14 @@ module OmniAuth
           JSON.parse(response.body).to_h
         end
       end
+
+      private
+
+      def current_organization
+        @current_organization ||= request.env["decidim.current_organization"] ||
+                                  Decidim::Organization.find_by(host: request.host) ||
+                                  Decidim::Organization.first
+      end
     end
   end
 end
