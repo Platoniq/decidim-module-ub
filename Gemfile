@@ -18,6 +18,7 @@ group :development, :test do
   gem "mdl"
 
   gem "decidim-dev", DECIDIM_VERSION
+  gem "decidim-initiatives", DECIDIM_VERSION
 end
 
 group :development do

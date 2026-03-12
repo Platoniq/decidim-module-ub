@@ -312,6 +312,11 @@ GEM
       decidim-core (= 0.31.2)
     decidim-generators (0.31.2)
       decidim-core (= 0.31.2)
+    decidim-initiatives (0.31.2)
+      decidim-admin (= 0.31.2)
+      decidim-comments (= 0.31.2)
+      decidim-core (= 0.31.2)
+      decidim-verifications (= 0.31.2)
     decidim-meetings (0.31.2)
       decidim-core (= 0.31.2)
       decidim-forms (= 0.31.2)
@@ -985,6 +990,7 @@ DEPENDENCIES
   coveralls_reborn
   decidim (~> 0.31.0)
   decidim-dev (~> 0.31.0)
+  decidim-initiatives (~> 0.31.0)
   decidim-ub!
   faker (~> 3.2)
   letter_opener_web (~> 2.0)
