@@ -16,8 +16,7 @@ module Decidim
       initializer "decidim_ub.omniauth" do
         next unless Decidim::Ub.omniauth && Decidim::Ub.omniauth[:client_id]
 
-        # Decidim use the secrets configuration to decide whether to show the omniauth provider
-        Rails.application.secrets[:omniauth][Decidim::Ub::OMNIAUTH_PROVIDER_NAME.to_sym] = Decidim::Ub.omniauth
+        Decidim.omniauth_providers[Decidim::Ub::OMNIAUTH_PROVIDER_NAME.to_sym] = Decidim::Ub.omniauth
 
         Rails.application.config.middleware.use OmniAuth::Builder do
           provider Decidim::Ub::OMNIAUTH_PROVIDER_NAME,
