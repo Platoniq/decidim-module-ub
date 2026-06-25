@@ -9,7 +9,7 @@ module Decidim
         validate :user_valid
 
         def unique_id
-          Digest::SHA512.hexdigest("#{role}/#{uid}-#{Rails.application.secrets.secret_key_base}")
+          Digest::SHA512.hexdigest("#{role}/#{uid}-#{Rails.application.secret_key_base}")
         end
 
         protected
