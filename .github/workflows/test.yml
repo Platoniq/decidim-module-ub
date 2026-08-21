@@ -12,7 +12,7 @@ on:
 env:
   DISABLE_SPRING: 1
   CI: "true"
-  RUBY_VERSION: 3.3.4
+  RUBY_VERSION: 3.4.7
   NODE_VERSION: 22.14.0
 
 concurrency:
@@ -46,7 +46,7 @@ jobs:
           fetch-depth: 1
 
       - run: |
-          sudo apt install imagemagick
+          sudo apt-get update && sudo apt-get install -y imagemagick libvips libvips-tools
 
       - uses: ruby/setup-ruby@v1
         with:
