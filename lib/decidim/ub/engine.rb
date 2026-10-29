@@ -11,6 +11,7 @@ module Decidim
       config.to_prepare do
         Decidim::OmniauthHelper.include(Decidim::Ub::OmniauthHelperOverride)
         Decidim::User.include(Decidim::Ub::UserOverride)
+        Decidim::OnboardingManager.prepend(Decidim::Ub::OnboardingManagerOverride)
       end
 
       initializer "decidim_ub.omniauth" do
