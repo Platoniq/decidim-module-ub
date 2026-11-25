@@ -26,7 +26,7 @@ describe "Overridden files", type: :view do
 
     item[:files].each do |file, signature|
       it "#{spec.gem_dir}#{file} matches checksum" do
-        expect(md5("#{spec.gem_dir}#{file}")).to eq(signature)
+        expect(md5("#{Gem::Specification.find_by_name(item[:package]).gem_dir}#{file}")).to eq(signature)
       end
     end
   end
