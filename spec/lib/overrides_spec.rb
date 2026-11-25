@@ -9,12 +9,12 @@ checksums = [
   {
     package: "decidim-core",
     files: {
-      # Do not show first_login page if the user has registered with the UB OAuth method
-      "/app/controllers/concerns/decidim/devise_authentication_methods.rb" => "4135a9244830bab55b50434938482c3c",
+      # No pending onboarding action for users registered with the UB OAuth method
+      "/app/services/decidim/onboarding_manager.rb" => "60265d7020d896d3b7ab89657b6bf982",
       # Show "Universitat de Barcelona" in the OAuth button
       "/app/helpers/decidim/omniauth_helper.rb" => "0eed5497d063eb2fa8bf8b996721e480",
       # Add methods to work with UB identities
-      "/app/models/decidim/user.rb" => "feff90d1d03a5f2b8f9686e98320f18a"
+      "/app/models/decidim/user.rb" => "2e470cc67129852bc0dd061a57ed754c"
     }
   }
 ]
@@ -26,7 +26,7 @@ describe "Overridden files", type: :view do
 
     item[:files].each do |file, signature|
       it "#{spec.gem_dir}#{file} matches checksum" do
-        expect(md5("#{spec.gem_dir}#{file}")).to eq(signature)
+        expect(md5("#{Gem::Specification.find_by_name(item[:package]).gem_dir}#{file}")).to eq(signature)
       end
     end
   end
